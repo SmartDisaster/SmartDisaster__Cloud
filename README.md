@@ -121,7 +121,7 @@ O banco possui **7 tabelas** com relacionamentos via chave estrangeira:
 ### Passo 1 — Clonar o repositório
 
 ```bash
-git clone https://github.com/pedrovaz100/smartdisaster.git
+git clone https://github.com/SmartDisaster/SmartDisaster__Cloud.git
 cd smartdisaster
 ```
 
