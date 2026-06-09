@@ -48,24 +48,7 @@ A aplicação é desenvolvida em **Java 17 com Spring Boot 3.2.4**, containeriza
 
 ## Arquitetura Macro
 
-```mermaid
-graph TD
-    U["👤 Usuário / Avaliador"]
-
-    subgraph CLOUD ["☁️  Nuvem — Railway"]
-        subgraph ENGINE ["🐳 Docker Engine"]
-            subgraph NET ["Rede Interna: smartdisaster-network"]
-                API["📦 smartdisaster-api-rm566551\nSpring Boot 3.2.4 · Java 17\nUsuário: appuser · Porta 8080"]
-                DB["📦 smartdisaster-db-rm566551\nPostgreSQL 16 Alpine\nPorta 5432"]
-            end
-            VOL[("💾 Volume: smartdisaster-db-data\nPersistência real em disco")]
-        end
-    end
-
-    U -->|"HTTP — porta 8080"| API
-    API -->|"JDBC — porta 5432"| DB
-    DB --- VOL
-```
+![Arquitetura Macro SmartDisaster](docs/arquitetura.png)
 
 | Componente | Descrição |
 |---|---|
