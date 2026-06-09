@@ -19,12 +19,8 @@
 
 | Recurso | Endereço |
 |---|---|
-| **API em Produção** | https://smartdisasterjava-production.up.railway.app |
-| **Swagger** | https://smartdisasterjava-production.up.railway.app/swagger-ui.html |
-| **Repositório GitHub** | https://github.com/pedrovaz100/smartdisaster |
-| **Vídeo de Apresentação** | https://youtu.be/Kg750vQBo48 |
 | **Vídeo Pitch** | https://youtu.be/ItPEbWxzNkw |
-| **Vídeo Demonstração DevOps** | https://youtu.be/pk97vHmkX98 |
+| **Vídeo Demonstração DevOps** | ... |
 
 ---
 
@@ -431,42 +427,3 @@ docker compose down
 # Para, remove os containers E o volume (apaga dados)
 docker compose down -v
 ```
-
----
-
-## Credenciais Pré-cadastradas
-
-O `DataLoader` insere automaticamente dados na primeira inicialização:
-
-| Role | E-mail | Senha |
-|---|---|---|
-| ADMIN | `admin@smartdisaster.com` | `123456` |
-| VOLUNTARIO | `voluntario@smartdisaster.com` | `123456` |
-
----
-
-## Checklist de Requisitos
-
-| Requisito | Implementação | Status |
-|---|---|:---:|
-| Imagem personalizada via Dockerfile | Build multi-stage Maven + JRE Alpine | ✅ |
-| Usuário não privilegiado | `appuser` — criado e ativado com `USER appuser` | ✅ |
-| Diretório de trabalho | `WORKDIR /app` | ✅ |
-| Variável de ambiente — App | `SPRING_PROFILES_ACTIVE`, `SPRING_DATASOURCE_URL`, `JWT_SECRET`, `SERVER_PORT` | ✅ |
-| Variável de ambiente — Banco | `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` | ✅ |
-| Porta exposta — App | `8080` mapeada para `0.0.0.0:8080` | ✅ |
-| Porta exposta — Banco | `5432` mapeada para `0.0.0.0:5432` | ✅ |
-| Nome do container contém RM — App | `smartdisaster-api-rm566551` | ✅ |
-| Nome do container contém RM — Banco | `smartdisaster-db-rm566551` | ✅ |
-| Volume nomeado | `smartdisaster-db-data` | ✅ |
-| Execução em segundo plano | `docker compose up -d` | ✅ |
-| Mesma rede | `smartdisaster-network` — ambos os containers | ✅ |
-| CRUD completo | Create, Read, Update, Delete em todos os módulos | ✅ |
-| Mínimo duas tabelas com relacionamento | 7 tabelas com FK entre si | ✅ |
-| Logs exibidos no terminal | `docker logs` para ambos os containers | ✅ |
-| `docker container exec` com `whoami`, `pwd`, `ls -l` | Demonstrado para ambos os containers | ✅ |
-| SELECT direto no container do banco | Queries em todas as tabelas | ✅ |
-| How to no GitHub | Este README | ✅ |
-| Descrição da solução | Seção "Descrição da Solução" | ✅ |
-| Arquitetura macro | Diagrama Mermaid na seção "Arquitetura Macro" | ✅ |
-| Deploy em nuvem | Railway — https://smartdisasterjava-production.up.railway.app | ✅ |
