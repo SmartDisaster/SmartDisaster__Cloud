@@ -410,3 +410,13 @@ docker compose down
 # Para, remove os containers E o volume (apaga dados)
 docker compose down -v
 ```
+
+---
+
+## Evidência — VM Excluída na Nuvem
+
+As imagens abaixo comprovam que a máquina virtual utilizada durante o desenvolvimento foi devidamente excluída ao final do projeto.
+
+![VM Deletada](docs/VM-DELETADA.jpeg)
+
+![VM Deletada (2)](docs/VM-DELETADA%20(2).jpeg)
