@@ -1,0 +1,66 @@
+# ─────────────────────────────────────────────
+# SmartDisaster — Docker Compose
+# RM566551 — Pedro Vaz / FIAP 2025
+# ─────────────────────────────────────────────
+
+services:
+
+  # ── Container 1: Banco de Dados PostgreSQL ──
+  # service name "postgres-db" = hostname DNS interno na rede Docker
+  # container_name = nome exibido no "docker ps" (mantém RM566551)
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: smartdisaster-db-rm566551
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: smartdisaster
+      POSTGRES_USER: smartuser
+      POSTGRES_PASSWORD: smartpass123
+    ports:
+      - "5432:5432"
+    volumes:
+      - smartdisaster-db-data:/var/lib/postgresql/data
+    networks:
+      - smartdisaster-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartuser -d smartdisaster"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ── Container 2: API Java Spring Boot ──
+  # service name "smartdisaster-api" = hostname DNS interno
+  # container_name = nome exibido no "docker ps" (mantém RM566551)
+  smartdisaster-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartdisaster-api-rm566551
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/smartdisaster
+      SPRING_DATASOURCE_USERNAME: smartuser
+      SPRING_DATASOURCE_PASSWORD: smartpass123
+      JWT_SECRET: U21hcnREaXNhc3RlckpXVFNlY3JldEtleUZpYXAyMDI0U2VjdXJpdHlLZXk=
+      JWT_EXPIRATION: 86400000
+      SERVER_PORT: 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    networks:
+      - smartdisaster-network
+
+# ── Rede compartilhada ──
+networks:
+  smartdisaster-network:
+    name: smartdisaster-network
+    driver: bridge
+
+# ── Volume nomeado para persistência real ──
+volumes:
+  smartdisaster-db-data:
+    name: smartdisaster-db-data
