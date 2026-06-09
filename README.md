@@ -20,7 +20,7 @@
 | Recurso | Endereço |
 |---|---|
 | **Vídeo Pitch** | https://youtu.be/ItPEbWxzNkw |
-| **Vídeo Demonstração DevOps** | ... |
+| **Vídeo Demonstração DevOps** | https://youtu.be/0stEAAWzAXU |
 
 ---
 
